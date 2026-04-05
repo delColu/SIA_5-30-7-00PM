@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'type',
         'password',
+        'department_id',
     ];
 
     /**
@@ -56,5 +57,10 @@ class User extends Authenticatable
     public function reports()
     {
         return $this->hasMany(Report::class);
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
     }
 }
