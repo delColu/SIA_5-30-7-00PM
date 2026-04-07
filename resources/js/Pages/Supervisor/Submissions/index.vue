@@ -44,14 +44,18 @@
                 <tr>
                   <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
                   <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Intern</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Due Date</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Due Date</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
                 <tr v-for="task in pendingTasks.data" :key="task.id" class="hover:bg-gray-50">
                   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ task.title }}</td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ task.user.name }}</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ task.due_date }}</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ task.due_date }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <Link :href="route('supervisor.tasks.show', task.id)" class="text-indigo-600 hover:text-indigo-500">View</Link>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -64,7 +68,7 @@
 </template>
 
 <script setup>
-import { Link } from '@inertiajs/vue3'
+import { Link, router } from '@inertiajs/vue3'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
 
 defineProps({

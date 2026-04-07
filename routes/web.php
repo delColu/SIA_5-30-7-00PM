@@ -33,6 +33,8 @@ Route::middleware(['auth', 'verified'])->name('supervisor.')->prefix('supervisor
 Route::get('/interns', [SupervisorController::class, 'interns'])->name('interns.index');
     Route::get('/interns/{intern}', [SupervisorController::class, 'intern'])->name('interns.show');
     Route::get('/tasks', [SupervisorController::class, 'tasks'])->name('tasks.index');
+    Route::get('/tasks/{task}', [SupervisorController::class, 'showTask'])->name('tasks.show');
+    Route::get('/reports/{report}', [SupervisorController::class, 'showReport'])->name('reports.show');
 });
 
 require __DIR__.'/auth.php';

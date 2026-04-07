@@ -221,5 +221,45 @@ class SupervisorController extends Controller
             'reports' => $reports,
         ]);
     }
+
+    public function showTask(Task $task)
+    {
+        $user = Auth::user();
+        if ($user->type !== 'supervisor') {
+            abort(403);
+        }
+
+        $deptId = $user->department_id;
+
+        if (is_null($deptId) || $task->user->department_id !== $deptId || $task->user->type !== 'intern') {
+            abort(403);
+        }
+
+        $task->load('user');
+
+        return Inertia::render('Supervisor/Tasks/show', [
+            'task' => $task,
+        ]);
+    }
+
+    public function showReport(Report $report)
+    {
+        $user = Auth::user();
+        if ($user->type !== 'supervisor') {
+            abort(403);
+        }
+
+        $deptId = $user->department_id;
+
+        if (is_null($deptId) || $report->user->department_id !== $deptId || $report->user->type !== 'intern') {
+            abort(403);
+        }
+
+        $report->load('user');
+
+        return Inertia::render('Supervisor/Reports/show', [
+            'report' => $report,
+        ]);
+    }
 }
 
