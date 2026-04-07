@@ -195,5 +195,31 @@ class SupervisorController extends Controller
             'query' => $query,
         ]);
     }
+
+    public function intern(User $intern)
+    {
+        $user = Auth::user();
+        if ($user->type !== 'supervisor') {
+            abort(403);
+        }
+
+        $deptId = $user->department_id;
+
+        if (is_null($deptId) || $intern->department_id !== $deptId || $intern->type !== 'intern') {
+            abort(403);
+        }
+
+        $intern->load(['reports.user', 'department']);
+
+        $reports = $intern->reports()
+            ->with('user')
+            ->orderBy('created_at', 'desc')
+            ->paginate(15);
+
+        return Inertia::render('Supervisor/Interns/show', [
+            'intern' => $intern,
+            'reports' => $reports,
+        ]);
+    }
 }
 

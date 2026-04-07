@@ -30,7 +30,8 @@ Route::middleware(['auth', 'verified'])->name('supervisor.')->prefix('supervisor
     Route::get('/submissions', [SupervisorController::class, 'submissions'])->name('submissions.index');
     Route::get('/submissions/{report}', [SupervisorController::class, 'showSubmission'])->name('submissions.show');
     Route::get('/reports', [SupervisorController::class, 'reports'])->name('reports.index');
-    Route::get('/interns', [SupervisorController::class, 'interns'])->name('interns.index');
+Route::get('/interns', [SupervisorController::class, 'interns'])->name('interns.index');
+    Route::get('/interns/{intern}', [SupervisorController::class, 'intern'])->name('interns.show');
     Route::get('/tasks', [SupervisorController::class, 'tasks'])->name('tasks.index');
 });
 

@@ -40,6 +40,7 @@
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ intern.tasks_count ?? 0 }}</td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm">
                   <Link :href="intern.id ? `/supervisor/reports?user_id=${intern.id}` : '#'" class="text-indigo-600 hover:text-indigo-500 mr-3">Reports</Link>
+                  <Link v-if="intern.id" :href="route('supervisor.interns.show', intern.id)" class="text-indigo-600 hover:text-indigo-500 mr-3 ml-2">Show</Link>
                 </td>
               </tr>
             </tbody>
