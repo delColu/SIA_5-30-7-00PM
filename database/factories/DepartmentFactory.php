@@ -16,6 +16,9 @@ class DepartmentFactory extends Factory
             'name' => $this->faker->unique()->company(),
             'description' => $this->faker->sentence(10),
             'head_of_department' => User::factory(),
+            'email' => $this->faker->unique()->companyEmail(),
+            'address' => $this->faker->address(),
+            'phone_number' => $this->faker->phoneNumber(),
         ];
     }
 }

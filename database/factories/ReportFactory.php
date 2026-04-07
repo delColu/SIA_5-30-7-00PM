@@ -15,8 +15,8 @@ class ReportFactory extends Factory
         return [
             'user_id' => User::factory(),
             'report_type' => $this->faker->randomElement(['weekly', 'monthly', 'incident']),
-            'status' => $this->faker->randomElement(['draft', 'submitted', 'approved', 'rejected']),
-            'content' => $this->faker->paragraphs(3, true),
+            'status' => $this->faker->randomElement(['draft', 'submitted', 'approved', 'rejected', 'pending']),
+            'content' => $this->faker->sentence(),
             'supervisor_comments' => $this->faker->paragraph(),
             'file_path' => $this->faker->word . '.pdf',
         ];

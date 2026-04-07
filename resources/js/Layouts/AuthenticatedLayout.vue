@@ -33,12 +33,44 @@ const showingNavigationDropdown = ref(false);
                             <div
                                 class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
                             >
-                                <NavLink
+                                <!-- <NavLink
                                     :href="route('dashboard')"
                                     :active="route().current('dashboard')"
                                 >
                                     Dashboard
-                                </NavLink>
+                                </NavLink> -->
+                                <template v-if="$page.props.auth.user?.type === 'supervisor'">
+                                    <NavLink
+                                        :href="route('supervisor.dashboard')"
+                                        :active="route().current('supervisor.dashboard')"
+                                    >
+                                        Supervisor Dashboard
+                                    </NavLink>
+                                    <NavLink
+                                        :href="route('supervisor.interns.index')"
+                                        :active="route().current('supervisor.interns.index')"
+                                    >
+                                        Interns
+                                    </NavLink>
+                                    <NavLink
+                                        :href="route('supervisor.tasks.index')"
+                                        :active="route().current('supervisor.tasks.index')"
+                                    >
+                                        Tasks
+                                    </NavLink>
+                                    <NavLink
+                                        :href="route('supervisor.submissions.index')"
+                                        :active="route().current('supervisor.submissions.index')"
+                                    >
+                                        Submissions
+                                    </NavLink>
+                                    <NavLink
+                                        :href="route('supervisor.reports.index')"
+                                        :active="route().current('supervisor.reports.index')"
+                                    >
+                                        Reports
+                                    </NavLink>
+                                </template>
                             </div>
                         </div>
 
@@ -146,6 +178,38 @@ const showingNavigationDropdown = ref(false);
                         >
                             Dashboard
                         </ResponsiveNavLink>
+                        <template v-if="$page.props.auth.user?.type === 'supervisor'">
+                            <ResponsiveNavLink
+                                :href="route('supervisor.dashboard')"
+                                :active="route().current('supervisor.dashboard')"
+                            >
+                                Supervisor Dashboard
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink
+                                :href="route('supervisor.interns.index')"
+                                :active="route().current('supervisor.interns.index')"
+                            >
+                                Interns
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink
+                                :href="route('supervisor.tasks.index')"
+                                :active="route().current('supervisor.tasks.index')"
+                            >
+                                Tasks
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink
+                                :href="route('supervisor.submissions.index')"
+                                :active="route().current('supervisor.submissions.index')"
+                            >
+                                Submissions
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink
+                                :href="route('supervisor.reports.index')"
+                                :active="route().current('supervisor.reports.index')"
+                            >
+                                Reports
+                            </ResponsiveNavLink>
+                        </template>
                     </div>
 
                     <!-- Responsive Settings Options -->

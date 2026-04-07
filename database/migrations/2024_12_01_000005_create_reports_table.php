@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('report_type');
-            $table->enum('status', ['draft', 'submitted', 'approved', 'rejected'])->default('draft');
+            $table->string('status')->default('draft');
             $table->longText('content');
             $table->text('supervisor_comments')->nullable();
             $table->string('file_path')->nullable();

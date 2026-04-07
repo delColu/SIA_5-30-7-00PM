@@ -12,6 +12,9 @@ class Department extends Model
         'name',
         'description',
         'head_of_department',
+        'email',
+        'address',
+        'phone_number',
     ];
 
     public function users()
