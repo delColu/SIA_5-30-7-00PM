@@ -13,7 +13,7 @@ class TaskFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
+            'user_id' => User::inRandomOrder()->first()?->id,
             'title' => $this->faker->sentence(4),
             'description' => $this->faker->paragraph(),
             'status' => $this->faker->randomElement(['pending', 'in_progress', 'completed']),

@@ -13,7 +13,7 @@ class ReportFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
+            'user_id' => User::inRandomOrder()->first()?->id,
             'report_type' => $this->faker->randomElement(['weekly', 'monthly', 'incident']),
             'status' => $this->faker->randomElement(['draft', 'submitted', 'approved', 'rejected', 'pending']),
             'content' => $this->faker->sentence(),

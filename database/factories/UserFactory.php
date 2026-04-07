@@ -25,13 +25,18 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        static $counter = 0;
+        $departments = Department::pluck('id')->toArray();
+        $departmentId = $departments[$counter % count($departments)];
+        $counter++;
+
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'type' => fake()->randomElement(['admin', 'intern', 'dean', 'supervisor', 'staff', 'student']),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
-            'department_id' => Department::inRandomOrder()->first()?->id,
+            'department_id' => $departmentId,
             'remember_token' => Str::random(10),
         ];
     }
